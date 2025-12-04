@@ -93,6 +93,17 @@ AdaptiveAvgPool1D → Linear
 
 Incluye gráficas de training loss y validation loss.
 
+- **`Flujo_completo.ipynb`**   
+  Notebook que **integra todo el flujo del proyecto en un solo archivo**:
+  - Carga del dataset limpio  
+  - Análisis básico  
+  - Preparación de secuencias  
+  - Entrenamiento del baseline  
+  - Entrenamiento de la CNN1D  
+  - Curvas de loss y evaluación final  
+
+  Este notebook permite **reproducir el proyecto completo desde cero de manera ordenada** y obtiene el mismo desempeño final (**≈79% accuracy**).
+
 ---
 
 ## Requisitos
