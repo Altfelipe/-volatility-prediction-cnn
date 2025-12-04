@@ -57,7 +57,7 @@ También se incluye un modelo **baseline** de regresión logística para compara
   - `fastai`
   - `yfinance` (para descargar datos en el notebook de limpieza)
 
-Puedes instalar (de ejemplo):
+Puedes instalar así:
 
 ```bash
 pip install pandas numpy matplotlib scikit-learn torch fastai yfinance
