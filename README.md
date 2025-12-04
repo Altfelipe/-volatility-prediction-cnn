@@ -26,6 +26,14 @@ La estructura está organizada en dos carpetas principales:
 
 ---
 
+
+### Reporte del proyecto
+El informe técnico final está disponible en la raíz del repositorio:
+
+- **`Predicción_de_volatilidad_reporte.pdf`**
+
+Este archivo contiene el desarrollo completo del proyecto, análisis, modelos y conclusiones.
+
 ## 📁 Carpeta `data/`
 
 ### `data/S&P500_data.xlsx`
