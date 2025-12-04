@@ -21,7 +21,7 @@ También se incluye un modelo **baseline** de regresión logística para compara
   - Se calculan retornos logarítmicos, volatilidad futura (rolling std) y la variable objetivo (label alta/baja volatilidad).
   - Se guarda el resultado final en `S&P500_data.xlsx`.
 
-- `Analisis (1).ipynb`  
+- `Analisis.ipynb`  
   Notebook de **análisis exploratorio**, donde se trabaja con `S&P500_data.xlsx`:
   - Visualización de retornos logarítmicos.
   - Volatilidad rolling y volatilidad futura.
