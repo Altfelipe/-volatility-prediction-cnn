@@ -9,55 +9,105 @@ También se incluye un modelo **baseline** de regresión logística para compara
 
 ---
 
-## Estructura del repositorio
+## 🗂️ Estructura del repositorio
 
-- `S&P500_data.xlsx`  
-  Dataset **ya limpio** con precios diarios del S&P 500 y las columnas necesarias para los modelos.  
-  Este archivo es el que usan todos los notebooks *después* de la etapa de limpieza.
+La estructura está organizada en dos carpetas principales:
 
-- `Limpieza_500.ipynb`  
-  Notebook donde:
-  - Se descarga la serie histórica del S&P 500 desde **Yahoo Finance**.
-  - Se calculan retornos logarítmicos, volatilidad futura (rolling std) y la variable objetivo (label alta/baja volatilidad).
-  - Se guarda el resultado final en `S&P500_data.xlsx`.
+```
+/data
+    S&P500_data.xlsx
 
-- `Analisis.ipynb`  
-  Notebook de **análisis exploratorio**, donde se trabaja con `S&P500_data.xlsx`:
-  - Visualización de retornos logarítmicos.
-  - Volatilidad rolling y volatilidad futura.
-  - Boxplots, clustering de volatilidad y hallazgos descriptivos.
+/notebooks
+    Limpieza_500.ipynb
+    Analisis.ipynb
+    baseline_stocks.ipynb
+    Red_CNN1D_sotcks.ipynb
+```
 
-- `baseline_stocks.ipynb`  
-  Notebook del **modelo baseline**:
-  - Carga `S&P500_data.xlsx`.
-  - Construye features simples (retornos rezagados, volatilidad rolling).
-  - Entrena una **regresión logística** para clasificar volatilidad alta/baja.
-  - Reporta métricas (accuracy ≈ 64%) y sirve como punto de referencia.
+---
 
-- `Red_CNN1D_sotcks.ipynb`  
-  Notebook del **modelo final CNN1D**:
-  - Carga `S&P500_data.xlsx`.
-  - Genera las secuencias de entrada de 60 días para la red (shape `(n_samples, 1, 60)`).
-  - Define y entrena la red CNN1D en PyTorch/fastai con:
-    - Conv1D → ReLU → MaxPool → Conv1D → ReLU → MaxPool → Dropout → AdaptiveAvgPool1D → Linear
-  - Usa Adam, `lr = 1e-3`, batch size 64, Dropout + weight decay y EarlyStopping.
-  - Reporta las curvas de loss (train/valid) y el desempeño final (accuracy ≈ 78–79%).
+## 📁 Carpeta `data/`
+
+### `data/S&P500_data.xlsx`
+Dataset **ya limpio**, generado desde el notebook de limpieza.  
+Incluye:
+- Precios ajustados del S&P 500  
+- Retornos logarítmicos  
+- Volatilidad futura (rolling std)  
+- Etiqueta binaria (alta/baja volatilidad)  
+
+Este archivo es utilizado por todos los notebooks posteriores.
+
+---
+
+## 📁 Carpeta `notebooks/`
+
+Todos los notebooks se encuentran aquí.
+
+### **1. `Limpieza_500.ipynb`**
+Realiza el proceso de preparación del dataset:
+- Descarga la serie histórica del S&P 500 desde Yahoo Finance  
+- Calcula retornos logarítmicos y volatilidad futura  
+- Genera la etiqueta binaria (alta/baja volatilidad)  
+- Exporta el dataset final a `data/S&P500_data.xlsx`  
+
+---
+
+### **2. `Analisis.ipynb`**
+Notebook de **análisis exploratorio (EDA)**:
+- Visualización de retornos  
+- Volatilidad rolling vs volatilidad futura  
+- Boxplots e histogramas  
+- Hallazgos clave sobre la dinámica de volatilidad
+
+---
+
+### **3. `baseline_stocks.ipynb`**
+Implementación del **modelo baseline**:
+- Usa `S&P500_data.xlsx`  
+- Construye features simples (retornos rezagados y volatilidad rolling)  
+- Entrena una regresión logística  
+- Resultado:  
+  - **Accuracy ≈ 64%**
+
+Sirve como referencia para evaluar el modelo final.
+
+---
+
+### **4. `Red_CNN1D_sotcks.ipynb`**
+Implementación del modelo final **CNN1D**:
+- Genera secuencias de entrada de 60 días  
+- Arquitectura:
+```
+- Conv1D → ReLU → MaxPool →
+Conv1D → ReLU → MaxPool → Dropout →
+AdaptiveAvgPool1D → Linear
+```
+- Entrenamiento con fastai:
+- Adam (`lr = 1e-3`)
+- Batch size 64  
+- Dropout + weight decay  
+- EarlyStopping  
+- Resultados:
+- **Accuracy ≈ 78–79%**
+
+Incluye gráficas de training loss y validation loss.
 
 ---
 
 ## Requisitos
 
-- Python 3.x  
-- Librerías principales:
-  - `pandas`
-  - `numpy`
-  - `matplotlib`
-  - `scikit-learn`
-  - `torch`
-  - `fastai`
-  - `yfinance` (para descargar datos en el notebook de limpieza)
+Dependencias principales del proyecto:
 
-Puedes instalar así:
+- `pandas`
+- `numpy`
+- `matplotlib`
+- `scikit-learn`
+- `torch`
+- `fastai`
+- `yfinance`
+
+Instalación:
 
 ```bash
 pip install pandas numpy matplotlib scikit-learn torch fastai yfinance
