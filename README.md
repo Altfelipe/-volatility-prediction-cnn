@@ -9,7 +9,7 @@ También se incluye un modelo **baseline** de regresión logística para compara
 
 ---
 
-## 🗂️ Estructura del repositorio
+## Estructura del repositorio
 
 La estructura está organizada en dos carpetas principales:
 
